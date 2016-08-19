@@ -29,7 +29,10 @@
     
 }
 -(void)grandDistchPath{
-    dispatch_queue_t my_Queue  = dispatch_queue_create("com.phimb.testqueue", DISPATCH_QUEUE_CONCURRENT);
+    
+    //DISPATCH_QUEUE_CONCURRENT cac task thuc hien dong thoi
+    //DISPATCH_QUEUE_SERIAL xong task nay moi thuc hien task tiep teo
+    dispatch_queue_t my_Queue  = dispatch_queue_create("com.phimb.testqueue", DISPATCH_QUEUE_SERIAL);
     dispatch_async(my_Queue, ^{
         [self counterTask:@"T1"];
     });
@@ -44,6 +47,8 @@
         [self colorRotatorTask];
     });
 }
+
+
 -(void)runWithMultiThread{
     // Create a new NSOperationQueue instance.
     operationQueue = [NSOperationQueue new];
